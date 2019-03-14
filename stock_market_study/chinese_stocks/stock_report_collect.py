@@ -61,7 +61,7 @@ def report_type_chosen(report_type, year, season):
             '现金流表': ts.get_cashflow_data(year, season),
             '偿债能力表': ts.get_debtpaying_data(year, season),
                 }
-    report_chosen = report_type_dict.get(report_type, "不存在该类型报表")
+    report_chosen = report_type_dict.get(report_type)
     return report_chosen
 
 def get_report(start_year, end_year, report_type):

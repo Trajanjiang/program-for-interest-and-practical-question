@@ -65,8 +65,27 @@ def report_type_chosen(report_type, year, season):
     return report_chosen
 
 def get_report(start_year, end_year, report_type):
+    """
+    start_year:起始年份
+    end_year: 终止年份
+    report_type: 报表种类
+    """
     report_list = []
     for i in range(start_year, end_year + 1):
         report = report_type_chosen(report_type, i, 4)
         report_list.append(report)
     return report_list
+
+# 下载好的报表保存为Excel格式以供之后的分析
+def storage_report(report_list, start_year, end_year, report_type):
+    writer = pd.ExcelWriter(str(report_type) + str(start_year) + " to " +
+                            str(end_year) + '.xlsx', engine='xlsxwriter')
+    n = len(report_list)
+    for i in range(n):
+        report = report_list[i]
+        year = start_year + i
+        report.to_excel(writer, sheet_name=str(year)+'report')
+    writer.save()
+        
+        
+    

@@ -77,7 +77,8 @@ def get_report(start_year, end_year, report_type):
     return report_list
 
 # 下载好的报表保存为Excel格式以供之后的分析
-def storage_report(report_list, start_year, end_year, report_type):
+def storage_report(start_year, end_year, report_type):
+    report_list = get_report(start_year, end_year, report_type)
     writer = pd.ExcelWriter(str(report_type) + str(start_year) + " to " +
                             str(end_year) + '.xlsx', engine='xlsxwriter')
     n = len(report_list)
